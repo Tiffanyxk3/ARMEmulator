@@ -11,3 +11,9 @@
   5. Number of branches taken including b, bl, bx, bCC (b_taken)
   6. Number of branches not taken from bCC (b_not_taken)
 - A 4-way set-associative cache is implemented
+
+## Usage
+*Prerequisite is setting up your enviornmenthaving to compile and run x86 code.
+1. `make`
+2. `./project04 <prog> [<arg1> ...]`
+For example, `./project04 sort 3 5 1 4`
