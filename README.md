@@ -14,6 +14,9 @@
 
 ## Usage
 *Prerequisite is setting up your enviornment to compile and run x86 code.*
-1. `make`
-2. `./project04 <prog> [<arg1> ...]`
+```bash
+make
+./project04 <prog> [<arg1> ...]
+```
+
 For example, `./project04 sort 3 5 1 4`
