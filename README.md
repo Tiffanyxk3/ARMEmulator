@@ -1,4 +1,4 @@
-# ARM Emulator (C, Arm Assembly)
+# ARM Emulator
 
 - This project is aimed to understand machine code and interpret the machine code instructions.
 - An emulator for a subset of the ARMv7 Instruction Set Architecture (ISA) written in C.
