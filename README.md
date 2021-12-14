@@ -21,3 +21,11 @@ make
 ```
 
 For example, `./project04 sort 3 5 1 4`
+
+## Included files
+- `Makefile`: Used to compile and run the program.
+- `project04.c`: Driver of the program.
+- `armemu.c`: The main emulator.
+- `armemu.h`: Header file for the emulator.
+- `cache.c`: the 4-way set-associative cache.
+- `verbose.c`: Logging function for debugging.
