@@ -13,7 +13,7 @@
 - A 4-way set-associative cache is implemented
 
 ## Usage
-*Prerequisite is setting up your enviornmenthaving to compile and run x86 code.
+*Prerequisite is setting up your enviornmenthaving to compile and run x86 code.*
 1. `make`
 2. `./project04 <prog> [<arg1> ...]`
 For example, `./project04 sort 3 5 1 4`
