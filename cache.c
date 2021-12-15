@@ -11,7 +11,7 @@ void cache_init(struct cache_st *csp) {
     if (csp->type == CT_DIRECT_MAPPED) {
         csp->ways = 1;
         csp->index_mask = (csp->size) - 1;
-    } else if (csp->type == CT_SET_ASSOCIATIVE) { // TODO
+    } else if (csp->type == CT_SET_ASSOCIATIVE) {
         csp->ways = 4;
     }
 
@@ -104,7 +104,7 @@ uint32_t cache_lookup_dm(struct cache_st *csp, uint32_t addr) {
     return data;
 }
 
-uint32_t cache_lookup_sa(struct cache_st *csp, uint32_t addr) { // TODO
+uint32_t cache_lookup_sa(struct cache_st *csp, uint32_t addr) {
     int num_set;
     uint32_t tag;
     uint32_t index;
@@ -150,7 +150,6 @@ uint32_t cache_lookup_sa(struct cache_st *csp, uint32_t addr) { // TODO
             uint32_t smallest_ts = -1;
             int smallest_i = -1;
             for (int i = begin; i < begin + 4; i++) {
-                // slot = &csp->slots[i];
                 uint32_t curr_ts = (&csp->slots[i])->timestamp;
                 if (curr_ts < smallest_ts) {
                     smallest_i = i;

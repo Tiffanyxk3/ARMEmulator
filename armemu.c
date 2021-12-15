@@ -6,8 +6,6 @@
 #include "armemu.h"
 
 // Analysis functions
-
-// Project04: Analysis struct init
 void analysis_init(struct analysis_st *ap) {
     ap->i_count = 0;
     ap->dp_count = 0;
@@ -17,7 +15,7 @@ void analysis_init(struct analysis_st *ap) {
     ap->b_not_taken = 0;
 }
 
-// Project04: Print results of dynamic analysis
+// Print results of dynamic analysis
 void analysis_print(struct analysis_st *ap) {
     printf("=== Analysis\n");
     printf("I_count       = %d\n", ap->i_count);
@@ -33,7 +31,7 @@ void analysis_print(struct analysis_st *ap) {
                ((double) ap->b_not_taken / (double) ap->b_count) * 100.0);
 }
 
-// Project04: Print results of dynamic analysis and cache sim
+// Print results of dynamic analysis and cache sim
 void armemu_print(struct arm_state *asp) {
     if (asp->analyze) {
         analysis_print(&(asp->analysis));
@@ -43,6 +41,7 @@ void armemu_print(struct arm_state *asp) {
     }
 }
 
+// Initialize the amulator
 void armemu_init(struct arm_state *asp, uint32_t *func, uint32_t a0, uint32_t a1, uint32_t a2, uint32_t a3) {
     int i;
 
@@ -74,13 +73,12 @@ void armemu_init(struct arm_state *asp, uint32_t *func, uint32_t a0, uint32_t a1
     asp->regs[2] = a2;
     asp->regs[3] = a3;
 
-    // Project04: Initialize dynamic analysis
+    // Initialize dynamic analysis
     analysis_init(&asp->analysis);
     
-    // Project04: Initialize cache simulator
+    // Initialize cache simulator
     cache_init(&asp->cache);
 }
-
 
 bool armemu_is_bx(uint32_t iw) {
     uint32_t bxcode = (iw >> 4) & 0xFFFFFF;
@@ -91,7 +89,7 @@ bool armemu_is_bx(uint32_t iw) {
 void armemu_bx(struct arm_state *asp, uint32_t iw) {
     uint32_t rn = iw & 0xF;
 
-    // Project04: increment dynamic analysis
+    // Increment dynamic analysis
     asp->analysis.b_count += 1;
     asp->analysis.b_taken += 1;
 
@@ -187,7 +185,7 @@ void armemu_add(struct arm_state *asp, uint32_t iw) {
     uint32_t rd = (iw >> 12) & 0xF;
     uint32_t oper2;
 
-    // Project04: Increment analysis count
+    // Increment analysis count
     asp->analysis.dp_count += 1;
     
     if (!i_bit) { // register
@@ -199,7 +197,6 @@ void armemu_add(struct arm_state *asp, uint32_t iw) {
         if (shift != 0) {
             if (type == 0b00) { // logical left
                 oper2 = asp->regs[rm] << amount;
-                // oper2 = asp->regs[rm] + shift;
             } else if (type == 0b01) { // logical right
                 oper2 = asp->regs[rm] >> amount;
             } else if (type == 0b10) { // arithmetic right
@@ -486,10 +483,6 @@ void armemu_one(struct arm_state *asp) {
 
     asp->analysis.i_count += 1;
 
-    /* Project04: get instruction word from instruction cache
-       instead of the PC pointer directly
-       uint32_t iw = *((uint32_t *) asp->regs[PC]);
-    */
     uint32_t iw = cache_lookup(&asp->cache, asp->regs[PC]);
 
     // Order matters: more constrained to least constrained

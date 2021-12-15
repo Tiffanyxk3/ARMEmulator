@@ -25,7 +25,6 @@
 
 
 // Dynamic analysis structs
-
 struct analysis_st {
     int i_count;
     int dp_count;
@@ -36,7 +35,6 @@ struct analysis_st {
 };
 
 // Cache simulation structs
-
 struct cache_slot_st {
     uint32_t valid;
     uint32_t tag;
